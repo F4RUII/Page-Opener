@@ -35,7 +35,7 @@ async function operate() {
         const currentcurrentId = currentId + index;
         polishedId = currentcurrentId.toString().slice(1, currentcurrentId.length);
 
-        window.open(`https://cdn.xn--l3cjg1aa9gm3hwc.com/034/segment_${polishedId}`);
+        window.open(`https://cdn.xn--l3cjg1aa9gm3hwc.com/034/segment_${polishedId}.ts`);
         
         await delay(500);
         console.log(`${polishedId}, delayed ${index}`);
