@@ -16,8 +16,6 @@ let running = false;
 
 submit.addEventListener('click', async () => {
     if (running) return;
-    console.log("submitted");
-    running = true;
 
     const novelId = parseFloat(novelIdElement.value);
     const audioId = parseFloat(audioIdElement.value);
@@ -37,6 +35,9 @@ submit.addEventListener('click', async () => {
 })
 
 async function operate() {
+    console.log("Operating");
+    running = true;
+    submit.value = "Operating";
     
     for (let index = 0; index < currentCount; index++) {
         const currentcurrentAudioId = currentAudioId + index;
@@ -45,12 +46,16 @@ async function operate() {
         const url = `https://cdn.xn--l3cjg1aa9gm3hwc.com/${polishedNovelId}/segment_${polishedAudioId}.ts`;
 
         window.open(url);
+        window.focus();
         logElement.innerHTML += `<p>${url}</p>`;
         
         await delay(500);
         console.log(`${currentNovelId}, ${polishedAudioId}, delayed ${index}`);
     }
 
+    // Finished
+    running = false;
+    submit.value = "Submit";
 }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
