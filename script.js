@@ -7,12 +7,20 @@ const countElement = document.getElementById('count');
 
 const logElement = document.getElementById('log');
 
-let currentAudioId = 100000;
-let currentNovelId = 1000;
+let defaultAudioId = 100000;
+let defaultNovelId = 1000;
+
+let currentAudioId = 0;
+let currentNovelId = 0;
 
 let currentCount = 0;
 
 let running = false;
+
+// Get user data
+let Data =
+JSON.parse(localStorage.getItem('taskLists')) // User has data
+|| {'Default': []};                           // User has no data
 
 submit.addEventListener('click', async () => {
     if (running) return;
@@ -26,9 +34,9 @@ submit.addEventListener('click', async () => {
         return;
     };
 
-    currentNovelId += novelId
-    currentAudioId += audioId;
-    currentCount += count;
+    currentNovelId = defaultAudioId + novelId
+    currentAudioId = defaultNovelId + audioId;
+    currentCount = count;
 
     // do stuff
     await operate();
